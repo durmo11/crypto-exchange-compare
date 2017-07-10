@@ -4,6 +4,7 @@ Express and Socket.io app powered by React+ Redux to implement real-time trackin
 
 * install dependencies
 ```yarn install```
+```yarn global add rimraf```
 * run in dev
 ```yarn run open:src```
 * build for prod
