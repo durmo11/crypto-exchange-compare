@@ -11,6 +11,7 @@ Express and Socket.io app powered by React+ Redux to implement real-time trackin
 * build for prod
 ``` yarn run build```
 
+* open the app at ```http://localhost:3000```
 ## TODO
 * fetch user from database(mongodb)
 * store historical data to db and use d3 to display it
