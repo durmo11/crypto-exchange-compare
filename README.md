@@ -13,3 +13,4 @@ Express and Socket.io app powered by React+ Redux to implement real-time trackin
 * fetch user from database(mongodb)
 * store historical data to db and use d3 to display it
 * make exchangeSocketApi consumable by third party
+* spinner until data arrives from all 3 exchanges
