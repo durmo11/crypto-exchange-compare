@@ -17,12 +17,11 @@ Express and Socket.io app powered by React+ Redux to implement real-time trackin
 ```
 import ExchangeSocketApi from './api/exchangeSocketApi';
 const exchangeSocketApi = new ExchangeSocketApi();
-
+```
 * specify trading pairs as an array
 ```
 tradingPairs = ['BTC-ETH','BTC-DASH', 'BTC-LTC']
 
-```
 ```
 ### exchangeSocketApi.listenDataFromExchange(tradingPairs, callback)
 
