@@ -21,7 +21,6 @@ const exchangeSocketApi = new ExchangeSocketApi();
 * specify trading pairs as an array
 ```
 tradingPairs = ['BTC-ETH','BTC-DASH', 'BTC-LTC']
-
 ```
 ### exchangeSocketApi.listenDataFromExchange(tradingPairs, callback)
 
