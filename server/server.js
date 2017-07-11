@@ -6,7 +6,7 @@ import open from 'open';
 import favicon from 'serve-favicon';
 import socketIO from 'socket.io';
 import routes from './api/index.route';
-import ExchangeSocketApi from './exchangeAPI/exchangeEvents';
+import ExchangeSocketApi from './exchangeAPI/exchangeEventsV2';
 
 const router = express.Router();
 const exchangeSocketApi = new ExchangeSocketApi();
@@ -39,6 +39,9 @@ io.on('connection', (socket) => {
   // console.log('Front end connected');
   // exchangeSocketApi.subscribeToBittrex(socket);
   // exchangeSocketApi.subscribeToPoloniex(socket);
-  exchangeSocketApi.getDataFromExchanges(socket, tradingPairs);
+  exchangeSocketApi.listenDataFromExchanges(tradingPairs, (data) => {
+    console.log('Data from my api', data);
+    socket.broadcast.emit('exchange data', data);
+  });
 
 });
