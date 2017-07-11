@@ -14,10 +14,10 @@ Express and Socket.io app powered by React+ Redux to implement real-time trackin
 * open the app at ```http://localhost:3000```
 
 ## API
+```
 import ExchangeSocketApi from './api/exchangeSocketApi';
 const exchangeSocketApi = new ExchangeSocketApi();
-
-##
+```
 ### exchangeSocketApi.listenDataFromExchange(tradingPairs, callback)
 
 Get realtime data from exchanges. Currently supports Poloniex, Bittrex and Bitfinex
