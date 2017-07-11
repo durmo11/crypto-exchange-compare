@@ -43,5 +43,6 @@ io.on('connection', (socket) => {
     console.log('Data from my api', data);
     socket.broadcast.emit('exchange data', data);
   });
+  // exchangeSocketApi.getDataFromExchanges(socket, tradingPairs);
 
 });

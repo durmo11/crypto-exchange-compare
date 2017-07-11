@@ -6,14 +6,12 @@ export default class SocketEvents {
     this.exchangeData = {};
   }
   listenDataFromExchanges(tradingPairs, callback) {
-    console.log('Callback', callback);
     this.subscribeToBittrex(tradingPairs, callback);
     this.subscribeToPoloniex(tradingPairs, callback);
     this.subscribeToBitfinex(tradingPairs, callback);
 
   }
   updateExhangeData(tradingPairs, pair, price, exchange,  callback) {
-    console.log('Callback within updateExhangeData', callback);
     pair = exchange == 'Poloniex' || exchange == 'Bitfinex'?  this.standarizeTradePairs(pair, exchange) : pair;
     if (tradingPairs.includes(pair)) {
        if (!(pair in this.exchangeData)) {
@@ -29,7 +27,6 @@ export default class SocketEvents {
     return pair;
   }
   subscribeToBittrex( tradingPairs, callback) {
-    console.log('Callback within bittrex', callback);
     let pair;
     let price;
     bittrex.websockets.listen((data) => {
@@ -49,8 +46,7 @@ export default class SocketEvents {
     // bittrex.websockets;
   }
   subscribeToPoloniex( tradingPairs, callback) {
-    console.log('Callback within poloniex', callback);
-    const connectionToPoloniex = new autobahn.Connection({
+      const connectionToPoloniex = new autobahn.Connection({
       url: poloniexURI,
       realm: "realm1"
     });
@@ -61,17 +57,16 @@ export default class SocketEvents {
       session.subscribe('ticker', (data,kwargs) => {
         let pair = data[0];
         // Appropriate labels for these data are, in order: currencyPair, last, lowestAsk, highestBid, percentChange, baseVolume, quoteVolume, isFrozen, 24hrHigh, 24hrLow
-        this.updateExhangeData(tradingPairs, pair, data[2],'Poloniex',  callback);
+        this.updateExhangeData(tradingPairs, pair, data[2],'Poloniex', callback);
         // socket.broadcast.emit('exchange data', this.exchangeData);
       });
 
     };
     connectionToPoloniex.onclose = (reason,details) => {
-      console.log("Websocket connection closed", reason, details);
+      console.log("Poloniex Websocket connection closed", reason, details);
     };
   }
   subscribeToBitfinex(tradingPairs,callback) {
-    console.log('Callback within bitfinex', callback);
     const BFX = require('bitfinex-api-node');
     const opts = {
       version: 2,
@@ -92,7 +87,6 @@ export default class SocketEvents {
     bws.on('error', console.error);
   }
   emitExchangeData(marketPair, callback) {
-    console.log('Callback within emitExchangeData', callback);
     if (Object.keys(marketPair).length > 2) {
       let pricesArray = Object.values(marketPair).slice(0,3);
       let bestPrice = Math.min(...pricesArray);
@@ -116,6 +110,7 @@ export default class SocketEvents {
       callback(this.exchangeData);
     } else {
       console.log('Waiting on data from all three exchanges...');
+      callback(this.exchangeData);
     }
   }
 }
