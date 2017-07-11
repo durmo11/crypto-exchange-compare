@@ -17,15 +17,20 @@ Express and Socket.io app powered by React+ Redux to implement real-time trackin
 ```
 import ExchangeSocketApi from './api/exchangeSocketApi';
 const exchangeSocketApi = new ExchangeSocketApi();
+
+* specify trading pairs as an array
+```
+tradingPairs = ['BTC-ETH','BTC-DASH', 'BTC-LTC']
+
+```
 ```
 ### exchangeSocketApi.listenDataFromExchange(tradingPairs, callback)
 
-Get realtime data from exchanges. Currently supports Poloniex, Bittrex and Bitfinex
 
+Get realtime data from exchanges. Currently supports Poloniex, Bittrex and Bitfinex
 ```
 exchangeSocketApi.listenDataFromExchanges(tradingPairs, (data) => {
   console.log('All Exchange data', data);
-  socket.broadcast.emit('exchange data', data);
 });
 //returns
 {
@@ -48,6 +53,36 @@ exchangeSocketApi.listenDataFromExchanges(tradingPairs, (data) => {
     Best_Rate: { Exchange: 'Poloniex', Price: 0.06973162 }
    }
 }
+```
+### exchangeSocketApi.subscribeToBitfinex(tradingPairs, callback)
+
+Subscribe To Bitfinex
+```
+exchangeSocketApi.subscribeToBitfinex(tradingPairs, (data) => {
+  console.log('Bitfinex data', data);
+});
+//returns
+{ exchange: 'Bitfinex', pair: 'LTCBTC', price: 0.018952 }
+```
+### exchangeSocketApi.subscribeToPoloniex(tradingPairs, callback)
+
+Subscribe To Poloniex
+```
+exchangeSocketApi.subscribeToPoloniex(tradingPairs, (data) => {
+  console.log('Poloniex data', data);
+});
+//returns
+{ exchange: 'Poloniex', pair: 'LTCBTC', price: 0.018952 }
+```
+### exchangeSocketApi.subscribeToBittrex(tradingPairs, callback)
+
+Subscribe To Bittrex
+```
+exchangeSocketApi.subscribeToBittrex(tradingPairs, (data) => {
+  console.log('Bittrex data', data);
+});
+//returns
+{ exchange: 'Bittrex', pair: 'LTCBTC', price: 0.018952 }
 ```
 ## TODO
 * fetch user from database(mongodb)
