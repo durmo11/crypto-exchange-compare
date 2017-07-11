@@ -17,3 +17,40 @@ Express and Socket.io app powered by React+ Redux to implement real-time trackin
 * store historical data to db and use d3 to display it
 * make exchangeSocketApi consumable by third party
 * spinner until data arrives from all 3 exchanges
+
+##API
+import ExchangeSocketApi from './api/exchangeSocketApi';
+const exchangeSocketApi = new ExchangeSocketApi();
+
+##
+### exchangeSocketApi.listenDataFromExchange(tradingPairs, callback)
+
+Get realtime data from exchanges. Currently supports Poloniex, Bittrex and Bitfinex
+
+```
+exchangeSocketApi.listenDataFromExchanges(tradingPairs, (data) => {
+  console.log('All Exchange data', data);
+  socket.broadcast.emit('exchange data', data);
+});
+//returns
+{
+  'BTC-LTC': {
+    Bitfinex: 0.018955,
+    Bittrex: 0.01895222,
+    Poloniex: '0.01893073',
+    Best_Rate: { Exchange: 'Poloniex', Price: 0.01893073 }
+  },
+  'BTC-ETH':{
+    Bitfinex: 0.081817,
+    Bittrex: 0.0822603,
+    Poloniex: '0.08176915',
+    Best_Rate: { Exchange: 'Poloniex', Price: 0.08176915 }
+  },
+  'BTC-DASH':{
+    Bitfinex: 0.069946,
+    Bittrex: 0.06990888,
+    Poloniex: '0.06973162',
+    Best_Rate: { Exchange: 'Poloniex', Price: 0.06973162 }
+   }
+}
+```
