@@ -25,8 +25,6 @@ const ExchangeTable = (props) => {
       Object.assign(bittrexData, bittrexData, {'exchange': 'Bittrex'});
       Object.assign(poloniexData, poloniexData, {'exchange': 'Poloniex'});
       Object.assign(bitfinexData, bitfinexData, {'exchange': 'Bitfinex'});
-      // console.log('Bittrex data', bittrexData);
-      // console.log('Poloniex data', poloniexData);
       exchangeData = [bittrexData, poloniexData,bitfinexData];
     } else {
       // console.log('Waiting for data from both exchanges to arrive...');
