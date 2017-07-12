@@ -4,7 +4,7 @@ import open from 'open';
 import favicon from 'serve-favicon';
 import socketIO from 'socket.io';
 import routes from './api/index.route';
-import ExchangeSocketApi from './exchangeAPI/exchangeEvents';
+import ExchangeSocketApi from './api/exchangeSocketApi';
 import compression from 'compression';
 
 const router = express.Router();
@@ -31,9 +31,8 @@ const server = app.listen(port, function(err) {
 let tradingPairs = ['BTC-ETH','BTC-DASH', 'BTC-LTC'];
 const io = socketIO(server);
 io.on('connection', (socket) => {
-  // console.log('Front end connected');
-  // exchangeSocketApi.subscribeToBittrex(socket);
-  // exchangeSocketApi.subscribeToPoloniex(socket);
-  exchangeSocketApi.getDataFromExchanges(socket, tradingPairs);
-
+  exchangeSocketApi.listenDataFromExchanges(tradingPairs, (data) => {
+    console.log('All Exchange data', data);
+    socket.emit('exchange data', data);
+  });
 });
