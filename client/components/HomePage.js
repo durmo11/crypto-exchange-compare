@@ -5,31 +5,38 @@ import socketIOClient from 'socket.io-client';
 import {bindActionCreators} from 'redux';
 import ExchangeTable from './ExchangeTable';
 import * as userActions from '../actions/userActions.js';
-import TradeTable from './TradeTable';
+import CompareTable from './CompareTable';
 import BestPriceTable from './BestPriceTable';
+const socket = socketIOClient();
 class HomePage extends React.Component {
   constructor(props) {
-    const socket = socketIOClient();
     super(props)
     this.state = {
       exchangeData: {},
       // poloniexData: {}
     }
-    socket.on('exchange data', (exchangData) => this.showExchangeData(exchangData))
-    // socket.on('data arrived from poloniex', (poloniexData) => this.showPoloniexData(poloniexData))
+    console.log('Component Mounting');
+    // this.setState({user: this.props.actions.getUser()})
+    socket.on('exchange data', (exchangData) => this.showExchangeData(exchangData));
+  }
+  componentWillMount() {
+
   }
   componentDidMount() {
-    // this.setState({user: this.props.actions.getUser()})
+
   }
 
   showExchangeData(exchangeData) {
-    this.setState({exchangeData: exchangeData});
+    // console.log("Show Exchange data is being called", exchangeData);
+    this.setState((prevState, props) => {
+    return {exchangeData}
+  });
   }
   render() {
     return (
       <div>
         <ExchangeTable exchangeData= {this.state.exchangeData}/>
-        <TradeTable exchangeData= {this.state.exchangeData}/>
+        <CompareTable exchangeData= {this.state.exchangeData}/>
         <BestPriceTable exchangeData= {this.state.exchangeData}/>
 
       </div>

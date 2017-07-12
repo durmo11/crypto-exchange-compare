@@ -27,14 +27,14 @@ let BestPriceTableData = [{
 ];
 
 const BestPriceTable = (props) => {
-    for ( let tradingPair in props.exchangeData) {
-      if (Object.keys(props.exchangeData[tradingPair]).length > 2) {
-      let bestPrice = props.exchangeData[tradingPair]['Best_Rate']['Price'];
-      BestPriceTableData[0][tradingPair] = props.exchangeData[tradingPair]['Best_Rate']['Price'];
-      BestPriceTableData[1][tradingPair] = props.exchangeData[tradingPair]['Best_Rate']['Exchange'];
+  if (props.exchangeData != undefined && Object.keys(props.exchangeData).length) {
+    Object.keys(props.exchangeData).map((tradingPair, index)=> {
+      let bestPrice = props.exchangeData[tradingPair]['Best_Price']['Price'];
+      BestPriceTableData[0][tradingPair] = props.exchangeData[tradingPair]['Best_Price']['Price'];
+      BestPriceTableData[1][tradingPair] = props.exchangeData[tradingPair]['Best_Price']['Exchange'];
       BestPriceTableData[3][tradingPair] = 20*1/bestPrice;
-      }
-    }
+    });
+  }
   return (
      <div>
        <h2>Best Price Table</h2>

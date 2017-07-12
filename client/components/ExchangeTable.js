@@ -10,25 +10,19 @@ const typing = {
   fontStyle: 'italic',
   opacity: '.5'
 }
-let bittrexData = {};
-let poloniexData = {};
-let bitfinexData = {};
-let exchangeData = [];
+let exchangeData = [{}, {}, {}];
 const ExchangeTable = (props) => {
   //transform the data so it fits the table format
   //check vs object.keys
-  for ( let tradingPair in props.exchangeData) {
-    if (Object.keys(props.exchangeData[tradingPair]).length > 2) {
-      bittrexData[tradingPair] = props.exchangeData[tradingPair]['Bittrex'];
-      poloniexData[tradingPair] = props.exchangeData[tradingPair]['Poloniex'];
-      bitfinexData[tradingPair] = props.exchangeData[tradingPair]['Bitfinex'];
-      Object.assign(bittrexData, bittrexData, {'exchange': 'Bittrex'});
-      Object.assign(poloniexData, poloniexData, {'exchange': 'Poloniex'});
-      Object.assign(bitfinexData, bitfinexData, {'exchange': 'Bitfinex'});
-      exchangeData = [bittrexData, poloniexData,bitfinexData];
-    } else {
-      // console.log('Waiting for data from both exchanges to arrive...');
-    }
+  if (props.exchangeData != undefined && Object.keys(props.exchangeData).length) {
+    Object.keys(props.exchangeData).map((tradingPair)=> {
+      Object.keys(props.exchangeData[tradingPair]['All_Prices']).map((exchange,index) => {
+        Object.assign(exchangeData[index], {exchange})
+        exchangeData[index][tradingPair] = props.exchangeData[tradingPair]['All_Prices'][exchange]
+      });
+    });
+  } else {
+    console.log('Exchange data arriving', props.exchangeData)
   }
 
   return (

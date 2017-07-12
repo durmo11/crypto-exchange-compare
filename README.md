@@ -33,22 +33,28 @@ exchangeSocketApi.listenDataFromExchanges(tradingPairs, (data) => {
 //returns
 {
   'BTC-LTC': {
-    Bitfinex: 0.018955,
-    Bittrex: 0.01895222,
-    Poloniex: '0.01893073',
-    Best_Rate: { Exchange: 'Poloniex', Price: 0.01893073 }
+    'All_Prices': {
+      Bitfinex: 0.018955,
+      Bittrex: 0.01895222,
+      Poloniex: '0.01893073',
+    },  
+    Best_Price: { Exchange: 'Poloniex', Price: 0.01893073 }
   },
   'BTC-ETH':{
-    Bitfinex: 0.081817,
-    Bittrex: 0.0822603,
-    Poloniex: '0.08176915',
-    Best_Rate: { Exchange: 'Poloniex', Price: 0.08176915 }
+    'All_Prices': {
+      Bitfinex: 0.081817,
+      Bittrex: 0.0822603,
+      Poloniex: '0.08176915',
+    },
+    Best_Price: { Exchange: 'Poloniex', Price: 0.08176915 }
   },
   'BTC-DASH':{
-    Bitfinex: 0.069946,
-    Bittrex: 0.06990888,
-    Poloniex: '0.06973162',
-    Best_Rate: { Exchange: 'Poloniex', Price: 0.06973162 }
+    'All_Prices': {
+      Bitfinex: 0.069946,
+      Bittrex: 0.06990888,
+      Poloniex: '0.06973162',
+    },
+    Best_Price: { Exchange: 'Poloniex', Price: 0.06973162 }
    }
 }
 ```

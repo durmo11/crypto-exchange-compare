@@ -9,26 +9,10 @@ export default class SocketEvents {
     this[allExchangesProperty] = 'allExchanges';
   }
   listenDataFromExchanges(tradingPairs, callback) {
-    console.log(this[allExchangesProperty]);
     this.subscribeToBittrex(tradingPairs, callback, this[allExchangesProperty]);
     this.subscribeToPoloniex(tradingPairs, callback,this[allExchangesProperty] );
     this.subscribeToBitfinex(tradingPairs, callback,this[allExchangesProperty] );
 
-  }
-  updateExhangeData(tradingPairs, pair, price, exchange, callback) {
-    pair = exchange == 'Poloniex' || exchange == 'Bitfinex'?  this.standarizeTradePairs(pair, exchange) : pair;
-    if (tradingPairs.includes(pair)) {
-       if (!(pair in this.exchangeData)) {
-         this.exchangeData[pair] = {};
-       }
-       this.exchangeData[pair][exchange] = price;
-       this.emitExchangeData(this.exchangeData[pair], callback);
-
-    }
-  }
-  standarizeTradePairs(pair, exchange) {
-    pair = pair == 'DSHBTC' ? 'BTC-DASH' : exchange == 'Poloniex' ? pair.replace('_', '-') : pair.substr(pair.length-3)+'-'+pair.substr(0,3);
-    return pair;
   }
   subscribeToBittrex(tradingPairs, callback, allExchangesProperty) {
     let pair;
@@ -36,7 +20,7 @@ export default class SocketEvents {
     const exchange = 'Bittrex';
     try {
       bittrex.websockets.listen((data) => {
-        console.log('Connection to Bifinex is open');
+        console.log('Connection to Bitfinex is open');
         if (data.M === 'updateSummaryState') {
           data.A.forEach((data_for) => {
             data_for.Deltas.forEach((marketsDelta) => {
@@ -91,7 +75,7 @@ export default class SocketEvents {
     const bws = new BFX(opts).ws;
     try {
       bws.on('open', () => {
-        console.log('Connection to Bifinex is open');
+        console.log('Connection to Bitfinex is open');
         bws.subscribeTicker('LTCBTC');
         bws.subscribeTicker('ETHBTC');
         bws.subscribeTicker('DSHBTC');
@@ -107,31 +91,34 @@ export default class SocketEvents {
 
 
   }
-  emitExchangeData(marketPair, callback) {
-    if (Object.keys(marketPair).length > 2) {
-      let pricesArray = Object.values(marketPair).slice(0,3);
-      let bestPrice = Math.min(...pricesArray);
-      if (marketPair['Bittrex'] == bestPrice) {
-        marketPair['Best_Rate'] = {
-          'Exchange': 'Bittrex',
-          'Price': bestPrice
-        }
-      } else if(marketPair['Poloniex'] == bestPrice) {
-          marketPair['Best_Rate'] = {
-            'Exchange': 'Poloniex',
-            'Price': bestPrice
-          }
-      } else {
-          marketPair['Best_Rate'] = {
-            'Exchange': 'Bitfinex',
-            'Price': bestPrice
-          }
-      }
-      console.log('Exchange data', this.exchangeData);
-      callback(this.exchangeData);
-    } else {
-      console.log('Waiting on data from all three exchanges...');
-      callback(this.exchangeData);
+  updateExhangeData(tradingPairs, pair, price, exchange, callback) {
+    pair = exchange == 'Poloniex' || exchange == 'Bitfinex'?  this.standarizeTradePairs(pair, exchange) : pair;
+    if (tradingPairs.includes(pair)) {
+       if (!(pair in this.exchangeData)) {
+         this.exchangeData[pair] = {
+           'All_Prices': {}
+         };
+       }
+       this.exchangeData[pair]['All_Prices'][exchange] = price;
+       this.emitExchangeData(this.exchangeData[pair], callback);
+
     }
+  }
+  standarizeTradePairs(pair, exchange) {
+    pair = pair == 'DSHBTC' ? 'BTC-DASH' : exchange == 'Poloniex' ? pair.replace('_', '-') : pair.substr(pair.length-3)+'-'+pair.substr(0,3);
+    return pair;
+  }
+  emitExchangeData(marketPair, callback) {
+    let marketPricesArray = Object.values(marketPair['All_Prices']);
+    let bestPrice = Math.min(...marketPricesArray);
+    Object.keys(marketPair['All_Prices']).map(exchange => {
+      if (marketPair['All_Prices'][exchange] == bestPrice) {
+        marketPair['Best_Price'] = {
+        'Exchange': exchange,
+        'Price': bestPrice}
+      }
+    });
+    console.log('Exchange data', this.exchangeData);
+    callback(this.exchangeData);
   }
 }

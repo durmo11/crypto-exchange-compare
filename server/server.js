@@ -29,7 +29,7 @@ const server = app.listen(port, function(err) {
   if (err) {
     console.log(err);
   } else {
-    // open(`http://localhost:${port}`);
+    open(`http://localhost:${port}`);
     console.log('Server runnning on port', port);
   }
 });
@@ -43,14 +43,14 @@ io.on('connection', (socket) => {
   // exchangeSocketApi.subscribeToPoloniex(tradingPairs, (data) => {
   //   socket.broadcast.emit('poloniex data', data);
   // });
-  exchangeSocketApi.subscribeToBitfinex(tradingPairs, (data) => {
-    socket.broadcast.emit('bitfinex data', data);
-    console.log('Bitfinex data', data);
-  });
-  // exchangeSocketApi.listenDataFromExchanges(tradingPairs, (data) => {
-  //   console.log('All Exchange data', data);
-  //   socket.broadcast.emit('exchange data', data);
+  // exchangeSocketApi.subscribeToBitfinex(tradingPairs, (data) => {
+  //   socket.broadcast.emit('bitfinex data', data);
+  //   console.log('Bitfinex data', data);
   // });
+  exchangeSocketApi.listenDataFromExchanges(tradingPairs, (data) => {
+    console.log('All Exchange data', data);
+    socket.emit('exchange data', data);
+  });
   // exchangeSocketApi.getDataFromExchanges(socket, tradingPairs);
 
 });
