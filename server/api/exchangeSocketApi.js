@@ -2,7 +2,7 @@ import bittrex from 'node.bittrex.api';
 import autobahn from 'autobahn';
 const poloniexURI = 'wss://api.poloniex.com';
 
-let allExchangesProperty = Symbol('Symbol to limit the access to internal property');
+let allExchangesProperty = Symbol('');
 export default class SocketEvents {
   constructor() {
     this.exchangeData = {};

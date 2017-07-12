@@ -17,9 +17,9 @@ let BestPriceTableData = [{
     'title': 'Exchange'
   },
   { 'title': 'Trade Bitcoin',
-  'BTC-DASH': 20,
-  'BTC-ETH': 20,
-  'BTC-LTC': 20
+  'BTC-DASH': '20 BTC',
+  'BTC-ETH': '20 BTC',
+  'BTC-LTC': '20 BTC'
   },
   {
     'title': 'Total',
@@ -32,7 +32,7 @@ const BestPriceTable = (props) => {
       let bestPrice = props.exchangeData[tradingPair]['Best_Price']['Price'];
       BestPriceTableData[0][tradingPair] = props.exchangeData[tradingPair]['Best_Price']['Price'];
       BestPriceTableData[1][tradingPair] = props.exchangeData[tradingPair]['Best_Price']['Exchange'];
-      BestPriceTableData[3][tradingPair] = 20*1/bestPrice;
+      BestPriceTableData[3][tradingPair] = 20*1/bestPrice+' '+tradingPair.split('-')[1];
     });
   }
   return (

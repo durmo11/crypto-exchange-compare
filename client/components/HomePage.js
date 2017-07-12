@@ -1,12 +1,12 @@
 import React from 'react'
 import {Link, browserHistory} from 'react-router';
 import {connect} from 'react-redux';
-import socketIOClient from 'socket.io-client';
 import {bindActionCreators} from 'redux';
 import ExchangeTable from './ExchangeTable';
 import * as userActions from '../actions/userActions.js';
 import CompareTable from './CompareTable';
 import BestPriceTable from './BestPriceTable';
+import socketIOClient from 'socket.io-client';
 const socket = socketIOClient();
 class HomePage extends React.Component {
   constructor(props) {
@@ -15,7 +15,6 @@ class HomePage extends React.Component {
       exchangeData: {},
       // poloniexData: {}
     }
-    console.log('Component Mounting');
     // this.setState({user: this.props.actions.getUser()})
     socket.on('exchange data', (exchangData) => this.showExchangeData(exchangData));
   }
@@ -29,8 +28,8 @@ class HomePage extends React.Component {
   showExchangeData(exchangeData) {
     // console.log("Show Exchange data is being called", exchangeData);
     this.setState((prevState, props) => {
-    return {exchangeData}
-  });
+      return {exchangeData}
+    });
   }
   render() {
     return (

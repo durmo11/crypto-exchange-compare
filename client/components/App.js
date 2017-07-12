@@ -1,8 +1,6 @@
 import React from 'react';
 import Header from './common/Header';
-import Footer from './common/Footer';
-import socketIOClient from 'socket.io-client';
-
+import Footer from './common/Footer';;
 export default class App extends React.Component {
   render() {
     return (
@@ -10,6 +8,7 @@ export default class App extends React.Component {
         <Header />
         <div className="container">
           {this.props.children}
+
         </div>
         <Footer />
       </div>
