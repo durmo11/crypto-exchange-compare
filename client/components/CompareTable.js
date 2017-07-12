@@ -26,6 +26,7 @@ const CompareTable = (props) => {
         Object.assign(exchangeData[index], {exchange})
         exchangeData[index][tradingPair] = 20*1/props.exchangeData[tradingPair]['All_Prices'][exchange]
       });
+      //TODO - this needs to be build to scale and remove hard coded values
       if (Object.keys(props.exchangeData[tradingPair]['All_Prices']).length > 2) {
         bittrexData[tradingPair] = 20*1/props.exchangeData[tradingPair]['All_Prices']['Bittrex'];
         poloniexData[tradingPair] = 20*1/props.exchangeData[tradingPair]['All_Prices']['Poloniex'];
