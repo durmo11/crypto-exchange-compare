@@ -25,7 +25,8 @@ let BestPriceTableData = [{
     'title': 'Total',
   }
 ];
-
+//TODO need to make this scalable
+//convert to smart components
 const BestPriceTable = (props) => {
   const cellEditProp = {
     mode: 'click',

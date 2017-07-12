@@ -12,8 +12,15 @@ footer .center {
 }
 .td-column-function-even-example {
   background: #1abc9c;
+  color: #fff;
 }
 
 .td-column-function-odd-example {
   background: none;
+}
+
+.exchangeTable p {
+  background: #1abc9c;
+  color: #fff;
+  padding: 5px;
 }

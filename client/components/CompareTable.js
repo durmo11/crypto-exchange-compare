@@ -17,6 +17,9 @@ let exchangeData = [{},{}, {}];
 let bitfinexData = {};
 let bittrexPoloniexDifferenceData = {};
 let bittrexBitfinexDifferenceData = {};
+
+//TODO need to make this scalable
+//convert to smart components
 const CompareTable = (props) => {
   //transform the data so it fits the table format
   //check vs object.keys
@@ -69,5 +72,4 @@ const CompareTable = (props) => {
     </div>
   )
 }
-
 export default CompareTable;

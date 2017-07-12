@@ -89,6 +89,7 @@ exchangeSocketApi.subscribeToBittrex(tradingPairs, (data) => {
 { exchange: 'Bittrex', pair: 'LTCBTC', price: 0.018952 }
 ```
 ## TODO
+* React in general needs work
 * fetch user from database(mongodb)
 * store historical data to db and use d3 to display it
 * spinner until data arrives from all 3 exchanges

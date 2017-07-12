@@ -12,7 +12,8 @@ const typing = {
 }
 let localExchangeData;
 let exchangeData = [{}, {}, {}];
-
+//TODO need to make this scalable
+//convert to smart components
 const ExchangeTable = (props) => {
   //transform the data so it fits the table format
   //check vs object.keys
@@ -30,6 +31,7 @@ const ExchangeTable = (props) => {
   return (
     <div className="exchangeTable">
       <h2>Exchange Data</h2>
+      <p>Green highlights the best price</p>
       <BootstrapTable data={exchangeData} striped={true} hover={true}  tableStyle={ { height: '250px' } }>
         <TableHeaderColumn width='150' dataField="exchange" isKey={true} dataAlign="center" dataSort={true}>Exchanges</TableHeaderColumn>
         <TableHeaderColumn width='150' dataField="BTC-LTC" dataSort={true} columnClassName={ columnClassNameFormat }>BTC-LTC</TableHeaderColumn>
@@ -46,8 +48,6 @@ function columnClassNameFormat(fieldValue, row, rowIdx, colIdx) {
   // rowIdx is index of row
   // colIdx is index of column
   // console.log(fieldValue)
-  console.log('Row', row);
-  console.log('colIdx', colIdx);
   let columnValues;
   if (localExchangeData) {
     if (colIdx === 1) {
@@ -57,9 +57,9 @@ function columnClassNameFormat(fieldValue, row, rowIdx, colIdx) {
     } else {
       columnValues = Object.values(localExchangeData['BTC-ETH']['All_Prices']);
     }
-    console.log('Column Values', columnValues);
-    console.log('Min',Math.min(...columnValues));
-    console.log('Field Value', fieldValue);
+    // console.log('Column Values', columnValues);
+    // console.log('Min',Math.min(...columnValues));
+    // console.log('Field Value', fieldValue);
     return fieldValue == Math.min(...columnValues) ? 'td-column-function-even-example' : 'td-column-function-odd-example';
   }
 
