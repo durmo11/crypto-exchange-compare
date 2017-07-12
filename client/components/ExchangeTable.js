@@ -52,7 +52,7 @@ function columnClassNameFormat(fieldValue, row, rowIdx, colIdx) {
   if (localExchangeData) {
     if (colIdx === 1) {
       columnValues = Object.values(localExchangeData['BTC-LTC']['All_Prices']);
-    } else if (colIdx ===2 ) {
+    } else if (colIdx === 2 ) {
       columnValues = Object.values(localExchangeData['BTC-DASH']['All_Prices']);
     } else {
       columnValues = Object.values(localExchangeData['BTC-ETH']['All_Prices']);
@@ -60,7 +60,7 @@ function columnClassNameFormat(fieldValue, row, rowIdx, colIdx) {
     // console.log('Column Values', columnValues);
     // console.log('Min',Math.min(...columnValues));
     // console.log('Field Value', fieldValue);
-    return fieldValue == Math.min(...columnValues) ? 'td-column-function-even-example' : 'td-column-function-odd-example';
+    return fieldValue == Math.min(...columnValues) ? 'td-column-function-best-price' : 'td-column-function-not-best';
   }
 
 

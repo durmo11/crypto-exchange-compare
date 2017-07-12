@@ -10,17 +10,25 @@ footer .center {
 .bestPrice th, .bestPrice td {
   width:50% !important;
 }
-.td-column-function-even-example {
+.td-column-function-best-price {
   background: #1abc9c;
   color: #fff;
 }
-
-.td-column-function-odd-example {
+.compareTable .td-column-function-best-price {
+  background: #e77e1e;
+  color: #fff;
+}
+.td-column-function-not-best {
   background: none;
 }
 
 .exchangeTable p {
   background: #1abc9c;
+  color: #fff;
+  padding: 5px;
+}
+.compareTable p {
+  background: #e77e1e;
   color: #fff;
   padding: 5px;
 }
