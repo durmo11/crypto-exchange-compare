@@ -11,9 +11,9 @@ footer .center {
   width:50% !important;
 }
 .td-column-function-even-example {
-  background: red;
+  background: #1abc9c;
 }
 
 .td-column-function-odd-example {
-  background: none  ;
+  background: none;
 }
