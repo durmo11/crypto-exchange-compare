@@ -1,6 +1,6 @@
 # Crypto Exchange Compare
 
-Express and Socket.io app powered by React+ Redux to implement real-time tracking of specified trading pairs such as (BTC-DASH, BTC-ETH, BTC-LTC) from Bittrex, Poloniex and Bitfinex
+*Express* and *Web Sockets* app powered by *React+Redux* to implement real-time tracking of specified trading pairs such as (BTC-DASH, BTC-ETH, BTC-LTC) from Bittrex, Poloniex and Bitfinex
 
 * install dependencies
 ```yarn install```
