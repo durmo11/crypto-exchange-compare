@@ -38,13 +38,13 @@ const CompareTable = (props) => {
         // console.log('Bittrex data', bittrexData);
         // console.log('Poloniex data', poloniexData);
         // exchangeData = [bittrexData, poloniexData, bitfinexData];
-        bittrexPoloniexDifferenceData['exchange'] = 'Bittrex/Poloniex';
-        let bittrexPoloniexDifference = bittrexData[tradingPair] -  poloniexData[tradingPair];
+        bittrexPoloniexDifferenceData['exchange'] = 'Bittrex vs Poloniex';
+        let bittrexPoloniexDifference = bittrexData[tradingPair] -  poloniexData[tradingPair]+' '+tradingPair.split('-')[1];
         bittrexPoloniexDifferenceData[tradingPair] = bittrexPoloniexDifference;
         // console.log('Difference Data', differenceData);
         exchangeData[3] = bittrexPoloniexDifferenceData;
-        bittrexBitfinexDifferenceData['exchange'] = 'Bittrex/Bitfinex';
-        let bittrexBitfinexDifference = bittrexData[tradingPair] -  bitfinexData[tradingPair];
+        bittrexBitfinexDifferenceData['exchange'] = 'Bittrex vs     Bitfinex';
+        let bittrexBitfinexDifference = bittrexData[tradingPair] -  bitfinexData[tradingPair]+' '+tradingPair.split('-')[1];
         bittrexBitfinexDifferenceData[tradingPair] = bittrexBitfinexDifference;
         // console.log('Difference Data', differenceData);
         exchangeData[4] = bittrexBitfinexDifferenceData;

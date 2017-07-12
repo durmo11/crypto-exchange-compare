@@ -10,3 +10,10 @@ footer .center {
 .bestPrice th, .bestPrice td {
   width:50% !important;
 }
+.td-column-function-even-example {
+  background: red;
+}
+
+.td-column-function-odd-example {
+  background: none  ;
+}

@@ -27,6 +27,10 @@ let BestPriceTableData = [{
 ];
 
 const BestPriceTable = (props) => {
+  const cellEditProp = {
+    mode: 'click',
+    blurToSave: true,
+  };
   if (props.exchangeData != undefined && Object.keys(props.exchangeData).length) {
     Object.keys(props.exchangeData).map((tradingPair, index)=> {
       let bestPrice = props.exchangeData[tradingPair]['Best_Price']['Price'];
@@ -38,10 +42,10 @@ const BestPriceTable = (props) => {
   return (
      <div className="bestPrice">
        <h2>Best Price Table</h2>
-       <BootstrapTable data={BestPriceTableData} striped={true} hover={true} tableStyle={ { height: '250px' }}>
+       <BootstrapTable data={BestPriceTableData} striped={true} cellEdit={ cellEditProp } hover={true} tableStyle={ { height: '250px' }}>
 
          <TableHeaderColumn width='150' dataField="title" isKey={true} dataAlign="center">BUY</TableHeaderColumn>
-         <TableHeaderColumn width='150' dataField="BTC-LTC" dataAlign="center">LTC</TableHeaderColumn>
+         <TableHeaderColumn width='150' dataField="BTC-LTC"  dataAlign="center">LTC</TableHeaderColumn>
 
        </BootstrapTable>
 
