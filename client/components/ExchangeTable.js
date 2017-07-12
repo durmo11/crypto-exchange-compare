@@ -26,7 +26,7 @@ const ExchangeTable = (props) => {
   }
 
   return (
-    <div>
+    <div className="exchangeTable">
       <h2>Exchange Data</h2>
       <BootstrapTable data={exchangeData} striped={true} hover={true}  tableStyle={ { height: '250px' } }>
         <TableHeaderColumn width='150' dataField="exchange" isKey={true} dataAlign="center" dataSort={true}>Exchanges</TableHeaderColumn>

@@ -4,3 +4,9 @@
 footer .center {
   text-align: center;
 }
+.exchangeTable th, .exchangeTable td, .compareTable th, .compareTable td {
+  width:25% !important;
+}
+.bestPrice th, .bestPrice td {
+  width:50% !important;
+}

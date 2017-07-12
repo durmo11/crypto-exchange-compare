@@ -36,21 +36,23 @@ const BestPriceTable = (props) => {
     });
   }
   return (
-     <div>
+     <div className="bestPrice">
        <h2>Best Price Table</h2>
        <BootstrapTable data={BestPriceTableData} striped={true} hover={true} tableStyle={ { height: '250px' }}>
 
-         <TableHeaderColumn width='150' dataField="title" isKey={true} dataAlign="center">Buy</TableHeaderColumn>
+         <TableHeaderColumn width='150' dataField="title" isKey={true} dataAlign="center">BUY</TableHeaderColumn>
          <TableHeaderColumn width='150' dataField="BTC-LTC" dataAlign="center">LTC</TableHeaderColumn>
 
        </BootstrapTable>
+
        <BootstrapTable data={BestPriceTableData} striped={true} hover={true} tableStyle={ { height: '250px' }}>
-         <TableHeaderColumn width='150' dataField="title" isKey={true} dataAlign="center">Buy</TableHeaderColumn>
+         <TableHeaderColumn  dataField="title" isKey={true} dataAlign="center">BUY</TableHeaderColumn>
          <TableHeaderColumn width='150' dataField="BTC-DASH" dataAlign="center">DASH</TableHeaderColumn>
 
        </BootstrapTable>
+
        <BootstrapTable data={BestPriceTableData} striped={true} hover={true} tableStyle={ { height: '250px' }}>
-         <TableHeaderColumn width='150' dataField="title" isKey={true} dataAlign="center">Buy</TableHeaderColumn>
+         <TableHeaderColumn width='150' dataField="title" isKey={true} dataAlign="center">BUY</TableHeaderColumn>
          <TableHeaderColumn width='150' dataField="BTC-ETH" dataAlign="center">ETH</TableHeaderColumn>
 
        </BootstrapTable>

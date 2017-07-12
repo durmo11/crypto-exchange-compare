@@ -57,7 +57,7 @@ const CompareTable = (props) => {
   }
 
   return (
-    <div>
+    <div className="compareTable">
       <h2>Compare Table  for 20 BTC</h2>
       <BootstrapTable data={exchangeData} striped={true} hover={true}  tableStyle={ { height: '250px' } }>
         <TableHeaderColumn width='150' columnClassName="row-bottom-padded-md" dataField="exchange" isKey={true} dataAlign="center">Exchange</TableHeaderColumn>
